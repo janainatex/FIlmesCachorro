@@ -1,0 +1,55 @@
+CREATE DATABASE filme_db;
+
+USE filme_db;
+
+CREATE TABLE filmes (
+    filme_id INT AUTO_INCREMENT PRIMARY KEY,
+    filme_titulo VARCHAR(100) NOT NULL,
+    filme_genero VARCHAR(100) NOT NULL,
+    filme_capa VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE cachorros (
+    cachorros_id INT AUTO_INCREMENT PRIMARY KEY,
+    filme_id INT,
+    cachorro_titulo VARCHAR(100) NOT NULL,
+    FOREIGN KEY (filme_id) REFERENCES filmes(filme_id)
+);
+
+INSERT INTO filmes (filme_titulo, filme_genero, filme_capa)
+VALUES ('Quatro Vidas de um Cachorro', 'Comédia', '/images/capa.01.png');
+
+SET @filme_id = LAST_INSERT_ID();
+
+INSERT INTO cachorros(filme_id, cachorro_titulo)
+VALUES 
+(@filme_id, 'Bailey');
+
+
+INSERT INTO filmes (filme_titulo, filme_genero, filme_capa)
+VALUES ('John Wick', 'Ação','/images/capa.02.png');
+
+SET @filme_id = LAST_INSERT_ID();
+
+INSERT INTO cachorros (filme_id, cachorro_titulo)
+VALUES 
+(@filme_id, 'Daisy');
+
+INSERT INTO filmes (filme_titulo, filme_genero,filme_capa)
+VALUES ('Marley & Eu', 'Comédia dramática', '/images/capa.03.png');
+
+SET @filme_id = LAST_INSERT_ID();
+
+INSERT INTO cachorros (filme_id, cachorro_titulo)
+VALUES 
+(@filme_id, 'Marley');
+
+
+INSERT INTO filmes(filme_titulo,filme_genero,filme_capa)
+VALUES ('Bolt - Supercão', 'Animação infantil',  '/images/capa.04.png');
+
+SET @filme_id = LAST_INSERT_ID();
+
+INSERT INTO cachorros (filme_id, cachorro_titulo)
+VALUES 
+(@filme_id, 'Bolt');
